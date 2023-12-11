@@ -1,3 +1,4 @@
+# Stock Market Prediction EDA Dashboard
 ## Stock Market
 
 A stock market, equity market, or share market is the aggregation of buyers and sellers of stocks (also called shares), which represent ownership claims on businesses; these may include securities listed on a public stock exchange, as well as stock that is only traded privately, such as shares of private companies which are sold to investors through equity crowdfunding platforms. Investment in the stock market is most often done via stockbrokerages and electronic trading platforms. Investment is usually made with an investment strategy in mind.
@@ -25,3 +26,86 @@ Tobias Preis et al. introduced a method to identify online precursors for stock 
 ### Market Mimicry
 
 Using new statistical analysis tools of complexity theory, researchers at the New England Complex Systems Institute (NECSI) performed research on predicting stock market crashes. It has long been thought that market crashes are triggered by panics that may or may not be justified by external news. This research indicates that it is the internal structure of the market, not external crises, which is primarily responsible for crashes. The number of different stocks that move up or down together were shown to be an indicator of the mimicry within the market, how much investors look to one another for cues. When the mimicry is high, many stocks follow each other's movements - a prime reason for panic to take hold. It was shown that a dramatic increase in market mimicry occurred during the entire year before each market crash of the past 25 years, including the financial crisis of 2007–08.
+
+## Overview
+
+Welcome to the Stock Market Prediction EDA Dashboard project. This web-based application aims to provide users with tools for stock market data analysis, visualization, and prediction. The dashboard includes features for user authentication, role-based access, data upload, machine learning-based stock prediction, and more.
+
+## Functionalities
+
+### User Authentication
+
+- Users can register with a unique username and password.
+- Email verification is required to activate user accounts.
+- Secure login using credentials.
+
+### Roles and Access
+
+- Two roles: "User" and "Admin."
+- Users can access EDA, visualizations, and stock prediction results.
+- Admins can manage users, upload datasets, and access all features.
+
+### Dashboard
+
+- Visualizations include candlestick charts, moving averages, volume trends, etc.
+- Interactive features like zooming, filtering, and date range selection.
+
+### Data Management
+
+- Admins can upload new stock datasets in CSV format.
+- System validates and stores datasets in the Oracle database.
+
+### Stock Prediction
+
+- Users can initiate stock prediction tasks using predefined machine learning models.
+- Predictions are provided based on selected stocks and date ranges.
+
+### Data Export
+
+- Users can export selected data or charts to various formats (e.g., PDF, PNG).
+
+### Notifications
+
+- Users receive system notifications for dataset upload completion, prediction results, etc.
+
+## Non-Functional Requirements
+
+### Performance
+
+- Efficient handling of concurrent users and large datasets.
+- Response times within acceptable limits.
+
+### Security
+
+- Secure hashing and storage of passwords.
+- Protection of sensitive user data.
+- Controlled admin access to prevent unauthorized system functions.
+
+### Scalability
+
+- Design to scale and accommodate more users and data over time.
+
+### Database Connectivity
+
+- Secure connection to the Oracle database for data retrieval and storage.
+
+## Assumptions
+
+- Access to an Oracle database for storing and retrieving stock datasets.
+- Unique email addresses for user account verification.
+- Predefined machine learning models for stock prediction.
+
+## Getting Started
+
+1. Clone this repository.
+2. Install dependencies using `pip install -r requirements.txt`.
+3. Configure database connection settings.
+4. Run the application with `streamlit run app.py`.
+
+## Contributing
+
+We welcome contributions! If you find issues or have ideas for improvements, please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
