@@ -14,7 +14,7 @@ from database_connection import create_connection, check_user, get_stock_data, d
 # Function to get the content of a file from a URL
 def get_file_content_as_string(path):
     try:
-        url = 'https://raw.githubusercontent.com/Lakshya-Ag/Streamlit-Dashboard/master/' + path
+        url = 'https://raw.githubusercontent.com/tejachowdary26/Stock-Prediction-EDA-Dashboard-with-User-Authentication/master/' + path
         response = urllib.request.urlopen(url)
         return response.read().decode("utf-8")
     except Exception as e:
