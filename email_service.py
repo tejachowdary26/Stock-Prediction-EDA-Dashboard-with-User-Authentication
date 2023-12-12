@@ -2,6 +2,7 @@ import smtplib
 import secrets
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from database_connection import add_verification_token
 
 SMTP_SERVER = "your_smtp_server"
 SMTP_PORT = 587
