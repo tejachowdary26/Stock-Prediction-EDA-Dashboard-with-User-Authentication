@@ -1,3 +1,4 @@
+import secrets
 def send_verification_email(email, username, smtp_details):
     verification_link = generate_verification_link(username)
     subject = "Verify Your Email"
