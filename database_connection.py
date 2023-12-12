@@ -49,3 +49,39 @@ def check_user(username, password):
         if connection.is_connected():
             cursor.close()
             connection.close()
+def add_verification_token(username, token):
+    connection = create_connection()
+    if connection is None:
+        return False
+    try:
+        cursor = connection.cursor()
+        query = "UPDATE users SET verification_token = %s WHERE username = %s"
+        cursor.execute(query, (token, username))
+        connection.commit()
+        return True
+    except Error as e:
+        print(f"Error updating user with verification token: {e}")
+        return False
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
+def verify_user(token):
+    connection = create_connection()
+    if connection is None:
+        return False
+    try:
+        cursor = connection.cursor()
+        query = "UPDATE users SET is_verified = True WHERE verification_token = %s"
+        cursor.execute(query, (token,))
+        affected_rows = cursor.rowcount
+        connection.commit()
+        return affected_rows > 0
+    except Error as e:
+        print(f"Error verifying user: {e}")
+        return False
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
