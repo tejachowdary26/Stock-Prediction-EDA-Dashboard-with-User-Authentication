@@ -4,15 +4,18 @@ from mysql.connector import Error
 def create_connection():
     try:
         connection = mysql.connector.connect(
-            host="your_host",  # Replace with your database host
-            user="your_username",  # Replace with your database username
-            password="your_password",  # Replace with your database password
-            database="your_database_name"  # Replace with your database name
+           host="127.0.0.1",
+            user="root",
+            passwd="workspace4321",
+            database="stockapp"
         )
         return connection
     except Error as e:
         print(f"Error connecting to MySQL Database: {e}")
         return None
+def hash_password(password):
+    # Using hashlib for password hashing. You can also use bcrypt for more security.
+    return hashlib.sha256(password.encode()).hexdigest()
 
 def add_user(username, password, email, role):
     connection = create_connection()
@@ -20,8 +23,11 @@ def add_user(username, password, email, role):
         return False
     try:
         cursor = connection.cursor()
-        query = "INSERT INTO users (username, password, email, role) VALUES (%s, %s, %s, %s)"
-        cursor.execute(query, (username, password, email, role))
+        query = """
+        INSERT INTO users (username, password, email, role, is_verified, verification_token)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        cursor.execute(query, (username, hashed_password, email, role))
         connection.commit()
         return True
     except Error as e:
@@ -45,6 +51,20 @@ def check_user(username, password):
     except Error as e:
         print(f"Error checking user: {e}")
         return False
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+def fetch_user_role(connection, username):
+    try:
+        cursor = connection.cursor()
+        query = "SELECT role FROM users WHERE username = %s"
+        cursor.execute(query, (username,))
+        result = cursor.fetchone()
+        return result[0] if result else None
+    except Error as e:
+        print(f"Error fetching user role: {e}")
+        return None
     finally:
         if connection.is_connected():
             cursor.close()
