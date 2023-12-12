@@ -1,6 +1,11 @@
-def send_verification_email(email, username):
-    verification_link = f"http://example.com/verify?user={username}"
-    print(f"Send this verification link to {email}: {verification_link}")
+def send_verification_email(email, username, smtp_details):
+    verification_link = generate_verification_link(username)
+    subject = "Verify Your Email"
+    body = f"Please click on the link to verify your account: {verification_link}"
+    # send_email(subject, body, email, **smtp_details)
+    # For now, let's just print it (Replace with actual email sending in production)
+    print(f"Verification email to {email}: {verification_link}")
+
 
 def send_admin_creation_request(admin_email, new_admin_data):
     # Simulate sending an email to the admin
