@@ -4,10 +4,10 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from database_connection import add_verification_token
 
-SMTP_SERVER = "your_smtp_server"
-SMTP_PORT = 587
-SMTP_USERNAME = "your_email_address"
-SMTP_PASSWORD = "your_email_password"
+SMTP_SERVER = "smtp.gmail.com"
+SMTP_PORT = "587"
+SMTP_USERNAME = "eda878327@gmail.com"
+SMTP_PASSWORD = "eda121223"
 
 def send_email(subject, body, recipient, smtp_details):
     msg = MIMEMultipart()
