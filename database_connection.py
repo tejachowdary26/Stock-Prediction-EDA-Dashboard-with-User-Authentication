@@ -1,3 +1,4 @@
+import yfinance as yf
 import mysql.connector
 from mysql.connector import Error
 
@@ -105,3 +106,15 @@ def verify_user(token):
         if connection.is_connected():
             cursor.close()
             connection.close()
+
+
+def download_and_store_stock_data(connection, symbol, start_date, end_date):
+    data = yf.download(symbol, start=start_date, end=end_date)
+    cursor = connection.cursor()
+    for index, row in data.iterrows():
+        cursor.execute(
+            "INSERT INTO stock_table (symbol, date, open, high, low, close, volume) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+            (symbol, index.strftime('%Y-%m-%d'), row['Open'], row['High'], row['Low'], row['Close'], row['Volume'])
+        )
+    connection.commit()
+
